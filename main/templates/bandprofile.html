@@ -1,0 +1,157 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block body_attr %} class="dark-blue-bg"{% endblock %}
+{% block 'nav-1' %}<li><a href="/">Search</a></li>{% endblock %}
+{% block content %}
+
+<div class="jumbotron band-jumbo" style="background-image:url({{performer.cover_source}})">
+    <div class="Dark-Underlay"></div>
+    <div class="container">
+        <div class="Profile-Picture"style="background-image:url(//graph.facebook.com/{{performer.fb_id}}/picture?type=square&width=200&height=200)"></div>
+        <div class="band-name">
+            <h2>{{performer.name}}</h2>
+            <h3 class="text-md-light">{{performer.genre}}</h3>
+        </div>
+    </div>
+</div>
+<div class="navbar navbar-default profile-navbar">
+    <div class="container">
+        <ul class="nav navbar-nav navbar-right profile-btns">
+            <li>
+                <button class="btn navbar-btn btn-warning-ggr btn-wide mp-t" data-action-name="openBookPerformer" data-action-properties='{"buttonName":"BandProfile bookPerformer"}'
+                onclick="ESA.BandProfile.Book()">
+                    Contact 'Em!
+                </button>
+            </li>
+        </ul>
+        <ul class="nav navbar-nav profile-stats">
+            <li>LIKES<div class="number-comma">{{performer.likes}}</div></li>
+            <li>LOCATION<div>{{performer.location.city}},{% if performer.location.state %} {{performer.location.state}}, {% endif %} {{performer.location.country}}</div></li>
+        </ul>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4">
+            {% if performer.sound_path %}
+            <div class="panel panel-dark">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Music</h3>
+                </div>
+                <div id="profile-embed-container" data-sc-path="{{performer.sound_path}}"style="margin-bottom:-25px;">
+                    <div class="embed-container"></div>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+        <div class="col-sm-4">
+            <div class="panel panel-dark">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Availability Calendar</h3>
+                </div>
+                <div class="panel-body panel-calendar">
+                    <div id="calendar"></div>
+                </div>
+            </div>
+            {% comment %}
+            {% if performer.email_address %}
+            <div class="panel panel-dark">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Contact</h3>
+                </div>
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <td>Email</td>
+                            <td><a href="mailto:{{performer.email_address}}" target="_blank">{{performer.email_address}}</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            {% endif %}
+            {% endcomment %}
+        </div>
+        <div class="col-sm-4">
+            <div class="panel panel-dark" id="#about-panel">
+              <div class="panel-heading">
+                <h3 class="panel-title">About</h3>
+              </div>
+              <div class="panel-body">
+                <p>{{performer.about|urlize|linebreaks}}</p>
+              </div>
+            </div>
+            {% if performer.band_members %}
+            <div class="panel panel-dark">
+              <div class="panel-heading">
+                <h3 class="panel-title">Band Members</h3>
+              </div>
+              <div class="panel-body">
+                  <p>{{performer.band_members|linebreaks}}</p>
+              </div>
+            </div>
+            {% endif %}
+            <div class="panel panel-dark">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Social Media</h3>
+                </div>
+                <table class="table">
+                    <thead>
+                        <tr><th>Platform</th><th>Engagement</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><a href="{{performer.link}}" target="_blank">Facebook</a></td>
+                            <td><span class="number-comma">{{performer.likes}}</span> likes</td>
+                        </tr>
+                        {% if performer.twitter_handle %}
+                        <tr>
+                            <td><a href="//twitter.com/{{performer.twitter_handle}}" target="_blank">Twitter</a></td>
+                            <td>
+                                @{{performer.twitter_handle}}
+                            </td>
+                        </tr>
+                        {% endif %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="x-tmpl-mustache" id="calendar-tmpl">
+{% verbatim %}
+    <div class="controls text-center">
+        <span class="clndr-previous-button glyphicon glyphicon-chevron-left pull-left"></span>
+        <span class="month">{{month}}</span>
+        <span class="year">{{year}}</span>
+        <span class="clndr-next-button glyphicon glyphicon-chevron-right pull-right"></span>
+    </div>
+    <div class="days-container">
+        <div class="days">
+            <div class="headers">
+                {{#daysOfTheWeek}}
+                    <div class="day-header">{{.}}</div>
+                {{/daysOfTheWeek}}
+            </div>
+            {{#days}}
+                <div class="{{classes}}" id="{{id}}">{{day}}</div>
+            {{/days}}
+        </div>
+    </div>
+{% endverbatim %}
+</script>
+<script>
+    $(function () {
+        {% if events_json %}
+            var events = {{events_json|safe}};
+        {% else %}
+            var events = [];
+        {% endif %}
+        var performer = {
+            "hasAdmins": false,
+            "PerformerID": {{performer.performer_id}}
+        };
+        ESA.BandProfile.init(events, performer);
+    })
+</script>
+
+{% endblock %}

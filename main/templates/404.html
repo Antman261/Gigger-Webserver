@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block body_attr %} class="dark-blue-bg"{% endblock %}
+{% block 'nav-1' %}<li><a href="/">Search</a></li>{% endblock %}
+{% block content %}
+
+<div class="jumbotron" id="jumbo-404">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-2" style="color:#fff">
+                <h2>Crap...looks like you blew an amp!</h1>
+                <p class="lead">We can't find the page you're looking for. Before your bandmates cut sick, here's some help to keep the gig kicking on:</p>
+                <ul class="list-inline">
+                    <li><a href="/">Search</a></li>
+                    <li><a href="/Blog/">Blog</a></li>
+    		        <li><a href="/FAQ">FAQ</a></li>
+                    <li><a href="/Contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,26 @@
+<div class="colorbox-modal colorbox-modal-small">
+		<button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="$.colorbox.close()"><span aria-hidden="true">&times;</span></button>
+		<h3 class="modal-title text-center text-h-light" id="ModalLabel">Get in touch with {{performer.name}}</h4>
+	<div class="modal-body">
+		<div class="text-center container-fluid" id="">
+			<div class="row text-md-light text-large">
+    			<div class="col-sm-12">
+    				<span class="glyphicon glyphicon-envelope text-muted-light-blue" style="font-size: 100px;"></span><br>
+    				<button class="btn btn-lg btn-block btn-info"id="loadEmail">GET EMAIL ADDRESS</button>
+                    <input type="text" class="form-control text-center" value="{{performer.email_address}}"style="display:none"id="email"readonly>
+    			</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+$(document).bind("cbox_complete", function () {
+    $("#loadEmail").click(function(){
+        $(this).hide(200);
+        $("#email").show(300);
+    })
+});
+$(document).bind("cbox_cleanup", function() {
+    $(document).off("cbox_complete"); // Otherwise the JS bindings seem to stack, causing issues like multiple form submissions.
+});
+</script>

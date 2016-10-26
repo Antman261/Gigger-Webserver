@@ -1,0 +1,14 @@
+{
+    "DEPLOYMENT": "DEVELOPMENT",
+    "DB": {
+        "HOST": "127.0.0.1",
+        "USER": "",
+        "PW": "",
+        "SCHEMA": ""
+    },
+    "AWS": false,
+    "SECRET_KEY": "",
+    "MAND_KEY": "",
+    "FB_APP_ID": "",
+    "FB_APP_SECRET": ""
+}

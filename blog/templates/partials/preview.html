@@ -1,0 +1,11 @@
+{% load staticfiles %}
+<div class="col-sm-4">
+    <div class="Blog-Card-sm Card">
+        <a href="{{Post.url_slug}}">
+            <div class="Blog-Image-sm" style="background-image:url({% static Post.image_url %})"></div>
+            <div class="Blog-Details-sm">
+                <div><h3>{{Post.title}}</h3></div>
+            </div>
+        </a>
+    </div>
+</div>

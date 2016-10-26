@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block body_attr %} class="dark-blue-bg"{% endblock %}
+{% block 'nav-1' %}<li><a href="/">Search</a></li>{% endblock %}
+{% block content %}
+<style>
+.iub_footer {
+    display: none;
+}
+</style>
+<div class="nav-padder"></div>
+<div class="container">
+    <div class="panel panel-dark row">
+        <div class="panel-body col-sm-8 col-sm-offset-2 text-justify">
+            {% if IUB_Content %}
+                {% autoescape off %}
+                    {{IUB_Content}}
+                {% endautoescape %}
+            {% else %}
+                <h1>Privacy Policy</h1>
+                <p>By providing information to us or otherwise using the Website or Service you agree to and accept the terms of our privacy policy which sets out how we collect, use, disclose and store personal information you may provide, including through the Website or Service.</p>
+
+                <p>Personal information is collected by us for the purpose of carrying out our business and providing our services. If you provide personal information about another person you warrant that individual is aware of the terms of this privacy policy and you have express permission and authority to provide the information. You must be at least 18 years of age to provide any such personal information.</p>
+
+                <p>Making an Order will involve submitting your name, email address, telephone numbers and payment details to us or a third party including any third party who processes Orders or payments for Orders. This is necessary for us to provide you with products you have ordered.</p>
+
+                <p>Personal information may be disclosed to third parties and Artists as above or in situations where we have a reason to believe that doing so is necessary to identify, contact or bring action against anyone who may be damaging, injuring, or interfering (intentionally or unintentionally) with our rights or property, users, or anyone else who could be harmed by such activities. Also, we may disclose personal information when we believe in good faith that the law requires disclosure. We will take reasonable steps to destroy or permanently de-identify personal information that is no longer needed for any purpose. However, some personal information may need to be stored as archives for record-keeping purposes only. </p>
+
+                <p>We endeavour to ensure security, integrity and privacy of personal information submitted to us, and review and update security measures regularly. However, we will not be held responsible for unauthorised access to personal information.</p>
+
+                <p>Our servers gather IP addresses to collect website statistics associated with our website. This non-personal information is collated and provided to us to assist in analysing usage of the site. Information cannot be traced to an individual. We do use cookies to provide you with a better experience. These allow us to manage your browsing session at our Website and as a way of monitoring user access.</p>
+
+                <p>If at any time, you discover that personal information held about you is incorrect, you may apply to us in writing to have it corrected.  You may on reasonable request, and pursuant to National Privacy Principles, access personal information.</p>
+
+                <p>If you have any queries relating to our privacy policy, or a problem or complaint, please contact us via the Website or Service or by sending us an email at our contact email.</p>
+            {% endif %}
+            <br><br><br>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

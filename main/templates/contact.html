@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block body_attr %} class="dark-blue-bg"{% endblock %}
+{% block 'nav-1' %}<li><a href="/">Search</a></li>{% endblock %}
+{% block content %}
+
+<div class="nav-padder"></div>
+<div class="container">
+    <div class="row">
+        <!-- <div class="col-sm-8 col-sm-offset-2 text-center">
+            <img class="img-" src="{{CDN}}/img/gigger-logo-rgb-m.png"><br><br>
+        </div> -->
+        <div class="col-sm-8 col-sm-offset-2">
+        	<div class="text-justify panel panel-dark">
+                <div class="panel-body">
+        		<p class="lead text-center">Got a question? Wanna chat?<br>Send us a message! We'd be amped to hear from you.</p><br>
+        		<table class="table">
+        			<tbody>
+        				<tr>
+        					<td class="text-right"><strong>General Email: </strong></td>
+        					<td> <a href="mailto:info@gigger.rocks">info@gigger.rocks</a></td>
+        				</tr>
+        				<tr>
+        					<td class="text-right"><strong>Support: </strong></td>
+        					<td> <a href="mailto:support@gigger.rocks">support@gigger.rocks</a></td>
+        				</tr>
+        				<tr>
+        					<td class="text-right"><strong>Feedback: </strong></td>
+        					<td> <a href="mailto:feedback@gigger.rocks">feedback@gigger.rocks</a></td>
+        				</tr>
+        			</tbody>
+        		</table>
+        		<br><br><br>
+            </div>
+        	</div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

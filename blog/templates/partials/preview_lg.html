@@ -1,0 +1,8 @@
+{% load staticfiles %}
+<div class="Blog-Card Card">
+    <a href="{{Post.url_slug}}">
+        <div class="Blog-Image-Col" style="background-image:url({% static Post.image_url %})"></div><div class="Blog-Details">
+            <h3 class="center-vertically">{{Post.title}}</h3>
+    </div>
+    </a>
+</div>

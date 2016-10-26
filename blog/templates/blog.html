@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block body_attr %} class="dark-blue-bg"{% endblock %}
+{% block 'nav-1' %}<li><a href="/">Search</a></li>{% endblock %}
+{% block content %}
+    <div class="nav-padder-xsm"></div>
+    <div class="container">
+        {% if BlogPosts.len > 1 %}
+        BUTTS
+            {% firstof BlogPosts as FirstPost %}
+            {% include 'partials/preview_lg.html' %}
+        {% endif %}
+    	<div class="row">
+            {% for Post in BlogPosts %}
+                {% if forloop.first != True %}
+                    {% include 'partials/preview.html' %}
+                {% else %}
+                    {% include 'partials/preview_lg.html' %}
+                    <hr>
+                {% endif %}
+    		{% endfor %}
+    	</div>
+    </div>
+    <div class="nav-padder"></div>
+{% endblock %}

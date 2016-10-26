@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load markdown_deux_tags %}
+{% block body_attr %} class="dark-blue-bg"{% endblock %}
+{% block 'nav-1' %}<li><a href="/">Search</a></li>{% endblock %}
+{% block content %}
+<div class="nav-padder-xsm"></div>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-10 col-sm-offset-1">
+            <ol class="breadcrumb">
+              <li><a href="/Home">Gigger.Rocks</a></li>
+              <li><a href="/Blog/">Blog</a></li>
+              <li class="active">{{Post.title}}</li>
+            </ol>
+            <article class="Card">
+                <div class="Blog-Header">
+                    <h2>{{Post.title}}</h2>
+                    <h4 class="text-capitalize">By {{Post.author.first_name}} {{Post.author.last_name}} <small>{{Post.created}}</small></h3>
+                </div>
+                <div class="Blog-Image" style="background-image:url({% static Post.image_url %})"></div>
+                <div class="Blog-Social-Btns">
+                    <div class="fb-share-button"
+                        data-href="https://www.gigger.rocks/Blog/{{Post.url_slug}}"
+                        data-layout="button_count">
+                    </div>
+                    <a href="https://twitter.com/share" class="twitter-share-button" data-via="GiggerRocks">Tweet</a>
+                </div>
+                <div class="Blog-Content">
+                    {{ Post.content|markdown }}
+                </div>
+                <div class="Blog-Social-Btns">
+                    <div class="fb-share-button"
+                        data-href="https://www.gigger.rocks/Blog/{{Post.url_slug}}"
+                        data-layout="button_count">
+                    </div>
+                    <a href="https://twitter.com/share" class="twitter-share-button" data-via="GiggerRocks">Tweet</a>
+                </div>
+                <hr>
+                <div class="fb-comments" data-href="https://www.gigger.rocks/Blog/{{Post.url_slug}}" data-numposts="5"></div>
+            </article>
+        </div>
+    </div>
+</div>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+</script>
+<script>
+	$(document).ready(function(){
+		ESA.Facebook.RunQuery(function(){
+			FB.XFBML.parse();
+		});
+	});
+</script>
+{% endblock %}

@@ -1,0 +1,185 @@
+{% load staticfiles %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/esa.min.css' %}" />
+    <title>{% block page_title %}Gigger{% endblock %}</title>
+    <meta charset="UTF-8">
+    <meta property="og:title" content="{{OGTitle}}"/>
+	<meta property="og:site_name" content="Gigger"/>
+	<meta property="og:url" content="{{request.META.HTTP_HOST}}{{request.path}}" />
+	<meta property="og:description" content="{{PageDescription}}">
+	<meta property="og:image" content="{{OGImage}}" />
+	<meta property="og:image:type" content="{{OGImageType}}"/>
+	<meta property="og:type"   content="{{OGType}}" />
+	<meta property="fb:app_id" content="{{FB_APP_ID}}" />
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@GiggerRocks">
+    <meta name="twitter:title" content="{{OGTitle}}">
+    <meta name="twitter:description" content="{{PageDescription}}">
+    <meta name="twitter:image" content="{{OGImage}}">
+	<meta name="description" content="{{PageDescription}}">
+	<meta name="keywords" content="{{PageKeywords}}">
+	<meta name="author" content="">
+	<meta name="copyright" content="Copyright ©2015, Gigger Pty Ltd, All rights reserved.">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" type="image/png" href="{% static 'img/gigger-logo-rgb-favicon32.png' %}" />
+	<link rel="apple-touch-icon" href="{% static 'img/gigger-logo-rgb-favicon64.png' %}" />
+</head>
+<body{% block body_attr %}{% endblock %}>
+<script> // Async JS Load
+        function loadScripts() {
+            $(document).ready(function () {
+                if (typeof mixpanel !== 'undefined') {
+                    mixpanel.track('Page View', {Page: $(document).find("title").text()});
+                } else {
+                    mixpanel = {
+                        track: function () {}
+                    };
+                }
+                setTimeout(function () {
+                    $.getScript("//use.typekit.net/set5grd.js", function () {
+                        try{Typekit.load();}catch(e){}
+                    });
+                    $.getScript("{% static '/js/jquery-ui.min.js' %}", function () {
+                        $.getScript("{% static '/js/jquery.ui.touch-punch.min.js' %}", function () {
+
+                        });
+                    });
+                    $.getScript("{% static '/js/jquery.crs.min.js' %}");
+
+
+                    loadCSS('https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css');
+                    loadCSS('https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900|Titillium+Web:400,600,700');
+                    // FACEBOOK CONVERSION PIXEL
+                    (function() {
+                    var _fbq = window._fbq || (window._fbq = []);
+                    if (!_fbq.loaded) {
+                    var fbds = document.createElement('script');
+                    fbds.async = true;
+                    fbds.src = '//connect.facebook.net/en_US/fbds.js';
+                    var s = document.getElementsByTagName('script')[0];
+                    s.parentNode.insertBefore(fbds, s);
+                    _fbq.loaded = true;
+                    }
+                    _fbq.push(['addPixelId', '403790879822860']);
+                    })();
+                    window._fbq = window._fbq || [];
+                    window._fbq.push(['track', 'PixelInitialized', {}]);
+
+                    // ZENDESK
+                    window.zEmbed||function(e,t){var n,o,d,i,s,a=[],r=document.createElement("iframe");window.zEmbed=function(){a.push(arguments)},window.zE=window.zE||window.zEmbed,r.src="javascript:false",r.title="",r.role="presentation",(r.frameElement||r).style.cssText="display: none",d=document.getElementsByTagName("script"),d=d[d.length-1],d.parentNode.insertBefore(r,d),i=r.contentWindow,s=i.document;try{o=s}catch(c){n=document.domain,r.src='javascript:var d=document.open();d.domain="'+n+'";void(0);',o=s}o.open()._l=function(){var o=this.createElement("script");n&&(this.domain=n),o.id="js-iframe-async",o.src=e,this.t=+new Date,this.zendeskHost=t,this.zEQueue=a,this.body.appendChild(o)},o.write('<body onload="document._l();">'),o.close()}("https://assets.zendesk.com/embeddable_framework/main.js","gigger.zendesk.com");
+                },500);
+                ESA.init("{{FB_APP_ID}}", "{{STATIC_URL}}");
+            });
+        }
+    </script>
+    <script src="{% static '/js/ggr.min.js'%}" onload="loadScripts()"></script>
+    {% block navbar %}
+    <nav class="navbar navbar-default navbar-transparent">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/"><img src="{% static '/img/gigger-logo-rgb-favicon32.png' %}"></a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            {% block 'nav-1' %}<li><a href="/FAQ">FAQ</a></li>{% endblock %}
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            {% if request.user.is_authenticated %}
+                <li><a href="/Dashboard">Dashboard</a></li>
+            {% else %}
+                <!-- <li><a href="/Login">Login/Signup</a></li> -->
+            {% endif %}
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+    {% endblock %}
+    {% block content %}{% endblock %}
+    {% block footer %}
+    <div id="playerZone" style="display: none;">
+    	<div class="playing-feedback-zone">
+    		<span class="minmax pull-right"><span class='glyphicon glyphicon-resize-full'></span></span>
+    		<h2>Now Playing: <span class="playing-text">...Uhh, nothing</span></h2>
+    	</div>
+    	<div class="embed-container"></div>
+    </div>
+    <footer class="dark-footer footer">
+    	<div class="dark-recess" style="margin: 0px;min-height: 222px;">
+    		<div class="row">
+    			<div class="col-md-8 col-md-offset-2">
+    				<div class="row">
+    					<div class="col-md-4 text-left">
+    						<h3>Quicklinks</h3>
+    						<div class="row">
+    							<div class="col-md-6">
+    								<ul class="list-unstyled">
+    									<li><a href="/">Search</a></li>
+    									<li><a href="/Blog/">Blog</a></li>
+                                        <li><a href="/Contact">Contact Us</a></li>
+										<li><a href="/About">About</a></li>
+    								</ul>
+    							</div>
+    							<div class="col-md-6">
+    								<ul class="list-unstyled">
+                                        <li><a href="/FAQ">FAQ</a></li>
+                                        <li><a href="/Privacy">Privacy</a></li>
+    									<li><a href="/TermsAndConditions">Terms &amp; Conditions</a></li>
+    								</ul>
+    							</div>
+    						</div>
+    					</div>
+    					<div class="col-md-5 bordered">
+    						<h3>Support <span class="text-warning-ggr tk-hwt-artz">Gigger</span></h3>
+    						<div class="w85pc">We rely on the generous support of people like you to keep Gigger alive.<br><br>
+    						<a href="https://www.patreon.com/Gigger" class="btn btn-danger btn-donate" target="_blank"><span class="glyphicon glyphicon-heart"></span> Donate</a><br></div>
+    					</div>
+    					<div class="col-md-3 text-right">
+    						<h3>Need Help?</h3>
+    						<ul class="list-unstyled">
+                                <li><a href="mailto:support@gigger.rocks">Ask Us!</a></li>
+    							<li><a href="https://gigger.zendesk.com/hc/en-us"target="_blank">Help Desk</a></li>
+
+    						</ul>
+    						<h3>Connect</h3>
+    						<div class="socialLinks">
+    							<a href="//www.facebook.com/GiggerRocks" target="_blank"><img src="" alt="Facebook" id="fb-logo-footer"></a>&nbsp;&nbsp;&nbsp;
+    							<a href="//www.Twitter.com/GiggerRocks" target="_blank"><img src="" alt="Twitter"id="tw-logo-footer"></a>&nbsp;&nbsp;&nbsp;
+    						</div>
+    					</div>
+    				</div>
+    			</div>
+    		</div>
+    	</div>
+    </footer>
+    <noscript><img height="1" width="1" alt="" style="display:none" src="https://www.facebook.com/tr?id=403790879822860&amp;ev=PixelInitialized" /></noscript>
+    {% if ENV.DEPLOYMENT == "PRODUCTION" %}
+        {% if ENV.NoGA != True %}
+        <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+          ga('create', 'UA-63865427-1', 'auto');
+          ga('send', 'pageview');
+        </script>
+        {% endif %}
+    {% endif %}
+    </body>
+    </html>
+
+    {% endblock %}
+</body>
+</html>

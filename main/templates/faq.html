@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block 'nav-1' %}<li><a href="/">Search</a></li>{% endblock %}
+{% block content %}
+
+<style>
+.list-group-item.active > a,
+.list-group-item.active > a:hover,
+.list-group-item.active > a:focus,
+.list-group-item.active:hover > a,
+.list-group-item.active:hover > a:hover,
+.list-group-item.active:hover > a:focus,
+.list-group-item.active:focus > a,
+.list-group-item.active:focus > a:hover,
+.list-group-item.active:focus > a:focus {
+    color: #FFF;
+}
+</style>
+<div class="parallax-window"  data-parallax="scroll" data-image-src="{% static '/img/promoter.jpg' %}" data-bleed="300"style="margin-bottom:-40px;">
+<div class="nav-padder-sm"></div>
+<div class="container">
+	<div class="center-block w75pc">
+		<h1 class="text-white text-shadow">FAQ</h1>
+        <div class="row" style="position:relative">
+            <div class="col-sm-4">
+                <ul class="list-group" id="FAQ-Tabs">
+                    <!-- <li class="list-group-item active"><a href="#app">When will you bring out an app?</a></li>
+                    <li class="list-group-item"><a href="#permission">Why do you need Facebook Manage Pages Permission?</a></li>
+                    <li class="list-group-item"><a href="#postaspage">Does this let you post on my Facebook page?</a></li> -->
+                    <!-- <li class="list-group-item"><a href="#promoters">Are you cutting out the promoter?</a></li> -->
+                    <li class="list-group-item"><a href="#bookingagency">Are you a booking agency?</a></li>
+                    <li class="list-group-item"><a href="#search">How does the search engine find bands?</a></li>
+                    <li class="list-group-item"><a href="#patreon">Why do you use Patreon, a crowdfunding website, to keep you alive?</a></li>
+                </ul>
+            </div>
+            <div class="col-sm-8" id="answers">
+                <!-- <div class="Card" id="app">
+                    <h3>When will you bring out an app?</h2>
+                    <p>We are now fully responsive across multiple devices—including mobile. But we do not have an app…yet.</p>
+
+                    <p>Our focus has been all about new features and how we can make Gigger the best it can possibly be. And app development is on the agenda, so stay tuned for updates!</p>
+                </div>
+                <div class="Card" id="permission">
+                    <h3>Why do you need Manage Pages permission?</h2>
+                    <p>We use Facebook’s <em>Manage Pages Permission</em> to verify that you are an admin of a band or venue page you are trying to add. This stops people from claiming bands, businesses or venues that aren’t theirs. We’re all about security here at Gigger.</p>
+                </div>
+                <div class="Card" id="postaspage">
+                    <h3>Does this let you post on my Facebook Page?</h2>
+                    <p>Nope and we wouldn’t want to! We realise that being authentic is crucial for a band, and fans know when it’s not really their favourite band posting.</p>
+
+                    <p>Facebook recently moved posting as a page into its own permission—<em>Publish Page</em>. This means that there’s absolutely no way Gigger could post on or as your page.</p>
+                </div>
+                <div class="Card" id="promoters">
+                    <h3>Are you cutting out the promoter?</h2>
+                    <p>We've built the website for promoters—you have the most features and cool bits by far. This is about making your job easier, for free.</p>
+
+                    <p>If you want to chat with us to see how we can help simplify your job, flick us a <a href="mailto:support@gigger.rocks">message</a>! We’d love to hear from you.</p>
+                </div> -->
+                <div class="Card" id="bookingagency">
+                    <h3>Are you a booking agency?</h3>
+                    <p>Nope! We are all about helping promoters, bands and venues book their own gigs using our system and expertise for free.</p>
+
+                    <p>That includes everything from building relationships and discovering new music talent to networking and making event negotiations easier—and all of this process is 100% online.</p>
+                </div>
+                <div class="Card" id="search">
+                    <h3>How does the search engine find bands?</h3>
+                    <p>Our crawler looks through the internet for publicly available data about bands. It then analyses this data to extract useful links for promoters, connect social media, and even rank the band against genres based on what has been written about them.
+                    </p>
+                    <p>This is exactly how search engines like Google operate. We only ever use publicly available data.</p>
+
+                    <p>You can always ask us to remove a profile, especially if your band no longer exists, or you just hate the idea of people being able to discover your band and offer you gigs ¯\_(ツ)_/¯</p>
+                </div>
+                <div class="Card" id="patreon">
+                    <h3>Why do you use Patreon, a crowdfunding website, to keep you alive?</h3>
+                    <p>We believe the core features of Gigger should be free—booking gigs is integral to live music. Bands shouldn't have to pay to play.</p>
+
+                    <p>Instead of raising investment, we're asking you to help us build our platform the way we think it should be built; by musicians for musicians. You'll get insider updates as we develop and we’re looking for constant feedback. That means you get to shape the future of Gigger and, together, we will shape the future of live music.</p>
+
+                    <p>But we still need your support to keep Gigger alive and moving forward. Patreon is a little different from your average crowdfunding source. Instead of contributing towards a project as a one-off with a time limit to raise funds for its success, Patreon allows you to continually donate.</p>
+
+                    <p>We’ve chosen Patreon because people can support our development by donating as much or as little as they want at any time. You can even receive a reward for helping to help us make Gigger awesome.</p>
+
+                    <p>Want to find out more or donate? Head to our <a href="//www.patreon.com/Gigger">Patreon</a> page!</p>
+                </div>
+            </div>
+        </div>
+        <div class="nav-padder"></div>
+	</div>
+</div>
+</div>
+<script>
+$(document).ready(function () {
+    ESA.FAQ.init();
+});
+</script>
+
+{% endblock %}

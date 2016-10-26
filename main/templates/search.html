@@ -1,0 +1,135 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block body_attr %} class="dark-blue-bg"{% endblock %}
+{% block content %}
+<style>
+#main-nav,
+.dark-recess  {
+    background-color: #012;
+}
+</style>
+<div class="jumbotron jumbo-search parallax-window"  data-parallax="scroll" data-image-src="{% static '/img/ttol1_wash1.jpg' %}" data-bleed="10" style="background:transparent">
+    <div class="container">
+        <div class="main-header">
+            <h1><span class="tk-hwt-artz">GIGGER</span></h1>
+            <H2>The search engine for the live music industry</h2>
+            {% if band_count %}
+            <h3><span id="band_count"class="number-comma">{{band_count}}</span> bands and counting</h3>
+            {% endif %}
+        </div>
+        <div class="row panel-dark-transparent panel-search dark-blue-bg">
+            <div class="panel-body">
+                <form class="col-sm-12 search-controls form-inline"action="javascript:;"id="search-controls">
+                    <div class="panel panel-dark">
+                        <div class="panel-body">
+                            <div class="form-group genre-group">
+                                <label for="genre">Genre</label>
+                                <select class="form-control select-reset" id="genre" name="genre">
+                                    <option value="-1">Any</option>
+                                    {% for genre in genres %}
+                                    <option title="{{genre.Description}}">{{genre.Name}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="checkbox">
+                                <label>
+                                  <input type="checkbox"name="has_sound"id="has_sound"value="true"> Has sound link
+                                </label>
+                            </div>
+                            <div class="form-group band-type-group">
+                                <label class="radio-inline">
+                                  <input type="radio"name="band_type"id="bt_org"value="original"checked> Original
+                                </label>
+                                <label class="radio-inline">
+                                  <input type="radio"name="band_type"id="bt_cov"value="cover"> Covers
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-dark">
+                        <div class="panel-body">
+                            <div class="form-group country-group">
+                                <label for="country">Country</label>
+                                <select name="country" class="crs-country form-control mp-t location location-country select-reset" data-region-id="state"data-action-name="countrySelect" data-action-properties='{"buttonName":"Search countrySelect"}' id="country"></select>
+                            </div>
+                            <div class="form-group state-group">
+                                <label for="state">State</label>
+                                <select name="state" id="state"class="form-control mp-t location location-state select-reset" data-action-name="stateSelect" data-action-properties='{"buttonName":"Search stateSelect"}'data-value="shortcode"></select>
+                            </div>
+                            <div class="form-group city-group">
+                                <label for="city">City</label>
+                                <input name="city" type="text" class="form-control location location-city" placeholder=" City/Town"id="city">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-dark">
+                        <div class="panel-body">
+                            <div class="form-group form-range-slider">
+                                <label for="like-range">Facebook Likes Range</label>
+                                <div id="like-range" class="form-control range-slider"></div>
+                            </div>
+                            <div class="form-group" id="min-likes-group">
+                                <label for="min-likes">Min</label>
+                                <input class="form-control" name="min_likes" id="min_likes">
+                            </div>
+                            <div class="form-group pull-right" id="max-likes-group">
+                                <label for="max-likes">Max</label>
+                                <input class="form-control" name="max_likes" id="max_likes">
+                            </div>
+                        </div>
+                    </div>
+                    <input type="hidden" name="page" id="page" value="1"/>
+                    <button class="btn btn-lg btn-purple btn-block">SEARCH</button>
+                </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="dark-blue-bg container-fluid">
+    <div class="container dark-blue-bg">
+        <!-- <div class="btn-group btn-group-justified btn-group-dark" role="group" aria-label="...">
+            <div class="btn-group" role="group">
+                <a href="javascript:;" class="btn btn-default active">Bands</a>
+            </div>
+            <div class="btn-group" role="group">
+                <a href="/Search/Venue" class="btn btn-default">Venues</a>
+            </div>
+            <div class="btn-group" role="group">
+                <button type="button" class="btn btn-default">Promoters</button>
+            </div>
+            <div class="btn-group" role="group">
+                <button type="button" class="btn btn-default">Services</button>
+            </div>
+        </div> -->
+        <div class="container pagination-controls" style="display:none">
+            <nav>
+              <ul class="pager pager-dark">
+                <li class="previous prev-page"><a href="javascript:;"><span aria-hidden="true">&larr;</span> Back</a></li>
+                <li><span class="search-meta"></span></lI>
+                <li class="next next-page"><a href="javascript:;">More <span aria-hidden="true">&rarr;</span></a></li>
+              </ul>
+            </nav>
+        </div>
+        <div class="container search-results"></div>
+        <div class="container pagination-controls" style="display:none">
+            <nav>
+              <ul class="pager pager-dark">
+                <li class="previous prev-page"><a href="javascript:;"><span aria-hidden="true">&larr;</span> Back</a></li>
+                <li><span class="search-meta"></span></lI>
+                <li class="next next-page"><a href="javascript:;">More <span aria-hidden="true">&rarr;</span></a></li>
+              </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+<script>
+
+$(document).ready(function () {
+    ESA.SearchPage.init({
+        $max: $("#max_likes"),
+        $min: $("#min_likes")
+    });
+})
+</script>
+{% endblock %}

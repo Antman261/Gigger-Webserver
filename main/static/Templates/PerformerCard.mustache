@@ -1,0 +1,32 @@
+<div class="Performer-Card" data-pid="{{PerformerID}}" data-fbid="{{FB_ID}}">
+	<a href="/{{username}}">
+        <div class="Dash-Performer-Image center-block" style="background-image: url('{{cover.source}}')"role="img" aria-label="{{name}}">
+    		<div class="Dark-Underlay"></div>
+    		<div class="Cover-Title">{{name}}</div>
+    	</div>
+    </a>
+	<div class="Performer-Card-Details">
+		<div class="Performer-Card-Details-Row">
+			<span class="Performer-Card-Details-Heading">Genre <span class="glyphicon glyphicon-music pull-right"></span></span>
+			<span class="Performer-Card-Details-Data">{{genre}}{{^genre}}&nbsp;{{/genre}}</span>
+		</div>
+		<div class="Performer-Card-Details-Row">
+			<span class="Performer-Card-Details-Heading">Facebook likes <span class="pull-right glyphicon glyphicon-thumbs-up"></span></span>
+			<span class="Performer-Card-Details-Data fb-likes"><span class="number-comma">{{likes}}</span></span>
+		</div>
+	</div>
+    {{#PerformerSoundcloudPath}}
+    <div class="Performer-Card-Details-Half">
+        <a href="#" class="btn btn-listen Soundcloud-Embed mp-t" data-sc-path="{{PerformerSoundcloudPath}}" data-action-name="listenToPerformer" data-action-properties='{"buttonName":"PerformerCard Listen"}'>
+            <span class="glyphicon glyphicon-play-circle" aria-hidden="true"></span> Listen
+        </a>
+    </div><div class="Performer-Card-Details-Half">
+        <a href="#" class="btn btn-book esa-bookPerformer mp-t" data-action-name="openBookPerformer" data-action-properties='{"buttonName":"PerformerCard bookPerformer"}'>Contact 'Em!</a>
+    </div>
+    {{/PerformerSoundcloudPath}}
+    {{^PerformerSoundcloudPath}}
+    <div class="Performer-Card-Details-Full-Width">
+        <a href="#" class="btn btn-book esa-bookPerformer mp-t" data-action-name="openBookPerformer" data-action-properties='{"buttonName":"PerformerCard bookPerformer"}'>Contact 'Em!</a>
+    </div>
+    {{/PerformerSoundcloudPath}}
+</div>

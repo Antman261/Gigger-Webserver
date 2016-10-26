@@ -1,0 +1,26 @@
+{
+    "dev": {
+	    "aws_region": "us-west-2",
+        "django_settings": "Gigger.settings", 
+        "s3_bucket": "zappa-west",
+        "remote_env_bucket": "ggr-config",
+        "remote_env_file": "env_dev.json",
+        "domain": "www.mixer.rocks",
+        "lets_encrypt_key": "s3://ggr-config/account.key",
+        "lets_encrypt_expression": "rate(15 days)",
+        "timeout_seconds": 65,
+        "exclude": ["env/*"]
+    },
+    "prod": {
+	    "aws_region": "us-west-2",
+	    "django_settings": "Gigger.settings", 
+        "s3_bucket": "zappa-west",
+        "remote_env_bucket": "ggr-config",
+        "remote_env_file": "env_prod.json",
+        "domain": "www.gigger.rocks",
+        "lets_encrypt_key": "s3://ggr-config/account_p.key",
+        "lets_encrypt_expression": "rate(15 days)",
+        "timeout_seconds": 65,
+        "exclude": ["env/*"]
+    }
+}
